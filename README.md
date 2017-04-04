@@ -156,13 +156,13 @@ We're working with two disks, so we're going to create a ZFS mirror pool, in
 which the disks are mirror images of each other. In case one fails, the other
 has a full copy.
 
-*IMPORTANT NOTE*: You should use volume identifier from `/var/run/disk` instead
-of the `/dev` names when referencing your volumes. For example, USB drives can
-be mounted at arbitrary `/dev` virtual devices depending on when they were
-connected. I found that I lost ZFS pools after disconnecting and reconnecting
-the drives. I'm not sure which identifier is the best, but I decided to go with
-UUIDs as found in `/var/run/disk/by-id/media-$UUID`. A UUID can also be used
-with `diskutil`, which makes it convenient.
+**IMPORTANT NOTE**: You should use volume identifier from `/var/run/disk`
+instead of the `/dev` names when referencing your volumes. For example, USB
+drives can be mounted at arbitrary `/dev` virtual devices depending on when they
+were connected. I found that I lost ZFS pools after disconnecting and
+reconnecting the drives. I'm not sure which identifier is the best, but I
+decided to go with UUIDs as found in `/var/run/disk/by-id/media-$UUID`. A UUID
+can also be used with `diskutil`, which makes it convenient.
 
 To get the volume UUIDS, refer here:
 
