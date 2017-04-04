@@ -14,26 +14,27 @@ if [[ $# -ne 3 ]] ; then
   exit -1
 fi
 
-POLL=$1
-VOLUME1=$2
-VOLUME2=$3
+POOL=$1
+VOLUME1_UUID=$2
+VOLUME2_UUID=$3
 
 
 # The volumes must be unmounted before zpool create.
-/usr/sbin/diskutil unmount $VOLUME1 || true
-/usr/sbin/diskutil unmount $VOLUME2 || true
+/usr/sbin/diskutil unmount $VOLUME1_UUID || true
+/usr/sbin/diskutil unmount $VOLUME2_UUID || true
 
 # Create the ZFS mirror pool.
-/usr/local/bin/zpool create -f \
+/usr/bin/sudo /usr/local/bin/zpool create -f \
   -o ashift=12 \
   -O casesensitivity=insensitive \
   -O normalization=formD \
   -O compression=lz4 \
   -O atime=off \
+  -O cachefile=$PWD/zpool.cache \
   $POOL \
   mirror \
-  $VOLUME1 \
-  $VOLUME2
+  /var/run/disk/by-id/media-$VOLUME1_UUID \
+  /var/run/disk/by-id/media-$VOLUME2_UUID
 
 # Notes:
 #
