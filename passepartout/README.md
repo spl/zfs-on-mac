@@ -19,3 +19,5 @@ After plugging the USB cables in, I use the following scripts to quickly mount
 $ ./mount.sh
 $ ./unmount.sh
 ```
+
+The `zdb` output is in [`zdb.txt`](./zdb.txt).

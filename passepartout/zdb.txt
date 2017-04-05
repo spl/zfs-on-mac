@@ -1,0 +1,43 @@
+passepartout:
+    version: 5000
+    name: 'passepartout'
+    state: 0
+    txg: 490
+    pool_guid: 15892756445732397228
+    errata: 0
+    hostid: 1584508811
+    hostname: ''
+    vdev_children: 1
+    vdev_tree:
+        type: 'root'
+        id: 0
+        guid: 15892756445732397228
+        children[0]:
+            type: 'mirror'
+            id: 0
+            guid: 4069135744084933496
+            metaslab_array: 35
+            metaslab_shift: 34
+            ashift: 12
+            asize: 2999768055808
+            is_log: 0
+            create_txg: 4
+            children[0]:
+                type: 'disk'
+                id: 0
+                guid: 9350216444140675144
+                path: '/private/var/run/disk/by-id/volume-749047B3-3C91-3E70-A44E-7712615110E1'
+                whole_disk: 0
+                DTL: 42
+                create_txg: 4
+            children[1]:
+                type: 'disk'
+                id: 1
+                guid: 13326125633090316357
+                path: '/private/var/run/disk/by-id/volume-04FD2434-C92B-3C93-B72D-A562AEE2D392'
+                whole_disk: 0
+                DTL: 40
+                create_txg: 4
+    features_for_read:
+        com.delphix:hole_birth
+        com.delphix:embedded_data
