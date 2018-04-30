@@ -3,12 +3,19 @@ OS X](https://openzfsonosx.org/) on macOS 10.12 (Sierra).
 
 # Instructions
 
-These instructions apply to my situation. They are not comprehensive, but might
-be helpful in figuring out the instructions your own situation.
+These instructions apply to my situation. They are not comprehensive, but they
+might be helpful in figuring out the instructions your own situation.
 
 ## Installing OpenZFS
 
-Install using [Homebrew](https://brew.sh/):
+I use [Homebrew](https://brew.sh/) to install OpenZFS. It appears to be kept up
+to date with the OpenZFS releases.
+
+First, check the [OpenZFS Changelog](https://openzfsonosx.org/wiki/Changelog)
+and Homebrew [`openzfs` cask recipe](https://github.com/caskroom/homebrew-cask/blob/master/Casks/openzfs.rb)
+for support for your version of macOS.
+
+Install using :
 
 ```
 $ ./install-openzfs.sh
@@ -17,7 +24,6 @@ $ ./install-openzfs.sh
 *Resources*:
 
 * [Installation Guide on OpenZFS on OS X](https://openzfsonosx.org/wiki/Install)
-* [`openzfs` for `homebrew-cask`](https://github.com/caskroom/homebrew-cask/blob/master/Casks/openzfs.rb)
 
 ## Encrypting an external drive
 
