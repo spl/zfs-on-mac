@@ -313,3 +313,54 @@ for your own user:
 *Resources*:
 
 * [Creating user privileges on OpenZFS on OS X](https://openzfsonosx.org/wiki/Creating_user_privileges)
+
+## Replacing a failed drive
+
+When one of the two drives fails, it will show up in `zpool status`. This is an
+example of how it looks when you only have one drive attached:
+
+```
+$ zpool status
+  pool: passepartout
+ state: DEGRADED
+status: One or more devices could not be opened.  Sufficient replicas exist for
+        the pool to continue functioning in a degraded state.
+action: Attach the missing device and online it using 'zpool online'.
+   see: http://zfsonlinux.org/msg/ZFS-8000-2Q
+  scan: scrub repaired 0 in 4h20m with 0 errors on Tue Jun 11 14:07:04 2019
+config:
+
+        NAME                                            STATE     READ WRITE CKSUM
+        passepartout                                    DEGRADED     0     0     0
+          mirror-0                                      DEGRADED     0     0     0
+            9350216444140675144                         UNAVAIL      0     0     0  was /private/var/run/disk/by-id/media-FE33AD56-C280-410B-B54B-85382CA84D75
+            media-3A7DAF85-DBDB-49A7-AE9B-24D55CA27000  ONLINE       0     0     0
+```
+
+To fix this:
+
+1. Buy a new USB HDD about the same size (3TB).
+2. Plug in both the working HDD and the new HDD.
+3. Import the `passepartout` pool (as shown above).
+4. Replace the failed drive (in this case: `9350216444140675144`) with the new
+   drive (in this case: `/dev/disk2`):
+
+   ```
+   $ sudo zpool replace -f passepartout 9350216444140675144 /dev/disk2
+   ```
+
+**NOTE**: I found the `-f` (“force”) flag to be required. Without it, the `zpool
+replace` command fails with:
+
+```
+invalid vdev specification
+use '-f' to override the following errors:
+/dev/disk2s1 is a EFI partition. Please see diskutil(8).
+```
+
+As far as I can tell, this error really means: “Are you sure you want to
+overwrite this disk?” And, yes, I did want to overwrite it.
+
+*Resources*:
+
+* [Dealing with Failed Devices](https://www.freebsd.org/doc/handbook/zfs-zpool.html#zfs-zpool-resilver)
