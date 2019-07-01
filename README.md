@@ -4,11 +4,47 @@ OS X] on macOS 10.14 (Mojave). It was originally written for macOS 10.12
 
 [OpenZFS on OS X]: https://openzfsonosx.org/
 
-# Instructions
+# Background
 
-These instructions apply to my personal situation w.r.t. to disks and
-configuration choices. It is not comprehensive, but it might be helpful in
-figuring out the instructions your own situation.
+**NOTE**: Everything applies to my personal situation (e.g. w.r.t. to disks and
+configuration choices). It is not comprehensive, but it might be helpful in
+figuring out your own situation.
+
+Here is the context in which this is written:
+
+* I have two external USB hard disk drives (HDDs), each 3TB.
+
+  While I would prefer solid-state drives (SSDs) for their quietness and
+  reliability, HDDs (esp. at 3TB) are much cheaper.
+
+* I want the disks to be mirrored to allow for the failure of one disk.
+
+  Since I started using this setup, I've already had one failure. HDDs are
+  unreliable, and I can't expect one to be enough.
+
+* I want any disk problems to be identified early.
+
+It seems that ZFS is the best way to handle the above requirements.
+
+Here are some other considerations I've had:
+
+* I would like to encrypt some or all of the disks.
+
+  I previously used the built-in support for encrypting HFS+ disks and installed
+  ZFS on top of that. (See the [Encryption Guide on OpenZFS on OS X].) This was
+  before ZFS had native encryption.
+
+  However, since then, I've discovered FUSE-based encryption such as
+  [`gocryptfs`], [`securefs`], and [CryFS], and I've decided to use that to
+  encrypt only a part of the data on disk. Consequently, I do not consider
+  encryption in this document.
+
+[Encryption Guide on OpenZFS on OS X]: https://openzfsonosx.org/wiki/Encryption
+[`gocryptfs`]: https://nuetzlich.net/gocryptfs/
+[`securefs`]: https://github.com/netheril96/securefs
+[CryFS]: https://www.cryfs.org/
+
+# Instructions
 
 ## Installing and Upgrading OpenZFS
 
