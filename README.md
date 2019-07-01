@@ -1,25 +1,72 @@
 These are instructions for downloading, installing, and configuring [OpenZFS on
-OS X](https://openzfsonosx.org/) on macOS 10.12 (Sierra).
+OS X] on macOS 10.14 (Mojave). It was originally written for macOS 10.12
+(Sierra) and has since been updated.
+
+[OpenZFS on OS X]: https://openzfsonosx.org/
 
 # Instructions
 
-These instructions apply to my situation. They are not comprehensive, but they
-might be helpful in figuring out the instructions your own situation.
+These instructions apply to my personal situation w.r.t. to disks and
+configuration choices. It is not comprehensive, but it might be helpful in
+figuring out the instructions your own situation.
 
-## Installing OpenZFS
+## Installing and Upgrading OpenZFS
 
-I use [Homebrew](https://brew.sh/) to install OpenZFS. It appears to be kept up
-to date with the OpenZFS releases.
+I use [Homebrew] to install OpenZFS. It is regularly updated with the OpenZFS
+releases.
 
-First, check the [OpenZFS Changelog](https://openzfsonosx.org/wiki/Changelog)
-and Homebrew [`openzfs` cask recipe](https://github.com/caskroom/homebrew-cask/blob/master/Casks/openzfs.rb)
-for support for your version of macOS.
+[Homebrew]: https://brew.sh/
 
-Install using :
+### Installing
+
+First, update Homebrew:
 
 ```
-brew update
-brew cask install openzfs
+$ brew update
+```
+
+Next, check the [`openzfs` formula] to make sure your macOS system is supported.
+Look at `depends_on`. Also, make a note of the version for the next step.
+
+[`openzfs` formula]: https://github.com/caskroom/homebrew-cask/blob/master/Casks/openzfs.rb
+
+```
+$ brew cask cat openzfs
+```
+
+Then, check the [OpenZFS Changelog] for the release notes of the version in the
+Homebrew formula.
+
+[OpenZFS Changelog]: https://openzfsonosx.org/wiki/Changelog
+
+Finally, install `openzfs`:
+
+```
+$ brew cask install openzfs
+```
+
+### Upgrading
+
+First, update Homebrew:
+
+```
+$ brew update
+```
+
+Next, check if you have an outdated `openzfs` cask:
+
+```
+$ brew cask outdated
+```
+
+Then, if your version is old and you want to upgrade, first read the [OpenZFS
+Changelog] to make sure everything you need will still work after an upgrade.
+(If everything is working now, you don't necessarily need to upgrade.)
+
+Finally, upgrade `openzfs`:
+
+```
+$ brew cask upgrade openzfs
 ```
 
 *Resources*:
