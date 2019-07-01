@@ -363,4 +363,5 @@ overwrite this disk?” And, yes, I did want to overwrite it.
 
 *Resources*:
 
+* [Degraded Pool](https://openzfsonosx.org/wiki/DegradedPool)
 * [Dealing with Failed Devices](https://www.freebsd.org/doc/handbook/zfs-zpool.html#zfs-zpool-resilver)
