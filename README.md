@@ -18,7 +18,8 @@ for support for your version of macOS.
 Install using :
 
 ```
-$ ./install-openzfs.sh
+brew update
+brew cask install openzfs
 ```
 
 *Resources*:
