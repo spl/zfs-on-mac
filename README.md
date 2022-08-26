@@ -67,7 +67,7 @@ Look at `depends_on`. Also, make a note of the version for the next step.
 [`openzfs` formula]: https://github.com/caskroom/homebrew-cask/blob/master/Casks/openzfs.rb
 
 ```
-$ brew cask cat openzfs
+$ brew cat openzfs --cask
 ```
 
 Then, check the [OpenZFS Changelog] for the release notes of the version in the
@@ -78,7 +78,7 @@ Homebrew formula.
 Finally, install `openzfs`:
 
 ```
-$ brew cask install openzfs
+$ brew install openzfs  --cask
 ```
 
 ### Upgrading
